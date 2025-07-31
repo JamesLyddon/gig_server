@@ -6,8 +6,6 @@ app.use(express.json())
 
 app.use(cors());
 
-const port = 3000;
-
 const gigs = [
   {
     name: 'Sigur Rós',
@@ -39,8 +37,4 @@ app.get('/gigs', (req, res) => {
   res.json(gigs)
 })
 
-app.listen(port, () => {
-  console.log("Now listening on port", port);
-});
-
-module.exports = gigs
+module.exports = {app, gigs}

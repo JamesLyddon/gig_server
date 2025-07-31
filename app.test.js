@@ -73,13 +73,13 @@ describe('DELETE /gigs/:id', () => {
 
 describe('POST /gigs', () => {
     test('add a new gig to the list of gigs', async () => {
-        const ACDCpayload = {
+        const ACDCpayload = {"gig":{
             name: "AC/DC",
             image: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTn83aQ8zMfk6nMcMm-wTyV8EsJb6RIorfZo10Urp18T4X7f4NsyDAS5HXAWJ98ZunVp-xsckUq8sCf6fB6pebEf3bDk_KOs9zHe_QUc2LC",
             description: "It's AC/DC!",
             date: new Date("November 17, 2025 20:00:00"),
             location: "London, UK"
-        }
+        }}
         
         const response = await request(app)
             .post('/gigs')

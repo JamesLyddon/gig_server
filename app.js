@@ -23,14 +23,13 @@ app.delete('/gigs/:id', indexFromId, (req, res) => {
 })
 
 app.post('/gigs', (req, res) => {
-  const { body } = req
-  const newGig = {...body, id: gigs[gigs.length - 1].id + 1, date: new Date(body.date)}
+  const { gig } = req.body
+  const newGig = {...gig, id: gigs[gigs.length - 1].id + 1, date: new Date(gig.date)}
   gigs.push(newGig)
 
   return res.json(
     {"message": "Successfully posted new gig", "gigs": gigs}
   )
 })
-
 
 module.exports = app

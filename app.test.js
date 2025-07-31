@@ -1,5 +1,6 @@
-const {app, gigs} = require('./app.js')
 const request = require('supertest')
+const app = require('./app.js')
+const gigs = require('./data/gigsData.js')
 
 describe('GET /gigs', () => {
     test('returns list of gigs', async () => {

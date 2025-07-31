@@ -7,9 +7,19 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "**This is a very simple Express server, to be used to complete the JavaScript fundamentals modules.**",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makersacademy/Express-Simple-Server-JS-Fundamentals.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/makersacademy/Express-Simple-Server-JS-Fundamentals/issues"
+  },
+  "homepage": "https://github.com/makersacademy/Express-Simple-Server-JS-Fundamentals#readme"
 }

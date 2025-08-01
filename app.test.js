@@ -1,13 +1,17 @@
 const request = require('supertest')
 const app = require('./app.js')
-const gigs = require('./data/gigsData.js')
+const { dataStore, resetGigs } = require('./data/gigsData.js')
+
+beforeEach(() => {
+    resetGigs()
+})
 
 describe('GET /gigs', () => {
     test('returns list of gigs', async () => {
         const response = await request(app).get('/gigs')
         const formattedResponse = response.body.map(item => ({...item, date: new Date(item.date)}))
 
-        expect(formattedResponse).toEqual(gigs);
+        expect(formattedResponse).toEqual(dataStore.gigs);
         expect(response.status).toBe(200);
     })
 });
@@ -17,21 +21,21 @@ describe('GET /gigs/:id', () => {
         const response = await request(app).get('/gigs/1')
         const formattedResponse = {...response.body, date: new Date(response.body.date)}
 
-        expect(formattedResponse).toEqual(gigs[0])
+        expect(formattedResponse).toEqual(dataStore.gigs[0])
         expect(response.status).toBe(200)
     })
     test('returns Chumbawamba gig when id is 3', async () => {
         const response = await request(app).get('/gigs/3')
         const formattedResponse = {...response.body, date: new Date(response.body.date)}
 
-        expect(formattedResponse).toEqual(gigs[2])
+        expect(formattedResponse).toEqual(dataStore.gigs[2])
         expect(response.status).toBe(200)
     })
     test('returns Chumbawamba gig when id is 3', async () => {
         const response = await request(app).get('/gigs/3')
         const formattedResponse = {...response.body, date: new Date(response.body.date)}
 
-        expect(formattedResponse).toEqual(gigs[2])
+        expect(formattedResponse).toEqual(dataStore.gigs[2])
         expect(response.status).toBe(200)
     })
     test('returns Bad Request 400 error when id is "a"', async () => {
@@ -55,7 +59,7 @@ describe('DELETE /gigs/:id', () => {
         const returnedGigs = response.body.gigs
         const formattedGigs = returnedGigs.map(gig => ({...gig, date: new Date(gig.date)}))
 
-        expect(formattedGigs).toEqual(gigs)
+        expect(formattedGigs).toEqual(dataStore.gigs)
         expect(returnedMsg).toEqual("Successfully deleted gig")
         expect(response.status).toBe(200)
     })
@@ -65,7 +69,7 @@ describe('DELETE /gigs/:id', () => {
         const returnedGigs = response.body.gigs
         const formattedGigs = returnedGigs.map(gig => ({...gig, date: new Date(gig.date)}))
 
-        expect(formattedGigs).toEqual(gigs)
+        expect(formattedGigs).toEqual(dataStore.gigs)
         expect(returnedMsg).toEqual("Successfully deleted gig")
         expect(response.status).toBe(200)
     })
@@ -91,7 +95,7 @@ describe('POST /gigs', () => {
         )
         
         expect(response.body.message).toEqual("Successfully posted new gig")
-        expect(formattedGigs).toEqual(gigs)
-        expect(response.body.gigs.length).toBe(2) // Sigur Rós and Chumbawumba deleted by delete tests above
+        expect(formattedGigs).toEqual(dataStore.gigs)
+        expect(response.body.gigs.length).toBe(4)
     })
 })

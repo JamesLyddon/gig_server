@@ -1,4 +1,4 @@
-const gigs = [
+const initialGigs = [
   {
     name: 'Sigur Rós',
     image: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQUzmM08u1_dWG0QQULdMw4sucLhfLdUOXck36VJdbnG6AP0dfqKA7qrKkaLxvlFgkjnh3tIby2iK-1TyWNVfUAMw',
@@ -25,4 +25,12 @@ const gigs = [
   }
 ]
 
-module.exports = gigs
+const dataStore = {
+  gigs: [...initialGigs]
+}
+
+const resetGigs = () => {
+  dataStore.gigs = [...initialGigs]
+}
+
+module.exports = {dataStore, resetGigs}

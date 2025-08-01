@@ -1,4 +1,4 @@
-const gigs = require('../data/gigsData.js')
+const { dataStore } = require('../data/gigsData.js')
 
 const indexFromId = (req, res, next) => {
   const { id } = req.params
@@ -6,7 +6,7 @@ const indexFromId = (req, res, next) => {
 
   if(isNaN(gigId)) return res.sendStatus(400)
   
-  const gigIndex = gigs.findIndex(
+  const gigIndex = dataStore.gigs.findIndex(
     gig => gig.id === gigId
   )
 
